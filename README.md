@@ -1,6 +1,9 @@
 # BridgeDTI 
 A Novel Graph Neural Network for Predicting Drug-Protein Interactions. 
 
+### Architecture   
+![](framework.png)
+
 # Usage
 ## How to use it?
 Firstly, you need to import the package.
