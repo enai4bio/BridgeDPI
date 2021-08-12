@@ -2,7 +2,7 @@
 A Novel Graph Neural Network for Predicting Drug-Protein Interactions. 
 
 ### Architecture   
-![](framework.png)
+![](framework.jpeg)
 
 # Usage
 ## How to use it?
