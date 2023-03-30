@@ -44,7 +44,7 @@ class DataClass:
 
                     pSeqData.append( [id2am[int(i)] for i in pSeq] )
                     gSeqData.append( [id2go[int(i)] for i in gSeq] )
-                    pPSSMData.append( pssmArr[name][:pSeqMaxLen] )
+                    # pPSSMData.append( pssmArr[name][:pSeqMaxLen] )
 
             for name,smi in zip(tqdm(open(os.path.join(path,'chem'),'r').readlines()),open(os.path.join(path,'chem.repr'),'r').readlines()):
                 name,smi = 'd_'+name.strip(),smi.strip()
@@ -191,7 +191,7 @@ class DataClass:
         self.dSeqData,self.dMolData = dSeqData,dMolData
         self.pSeqLen,self.dSeqLen = np.array(pSeqLen, dtype=np.int32),np.array(dSeqLen, dtype=np.int32)
         self.pSeqTokenized,self.gSeqTokenized = np.array(pSeqTokenized,dtype=np.int32),np.array(gSeqTokenized,dtype=np.int32)
-        self.pPSSMFeat = np.array([np.vstack([i,np.zeros((pSeqMaxLen-len(i),20))]) for i in pPSSMData], dtype=np.int32)
+        # self.pPSSMFeat = np.array([np.vstack([i,np.zeros((pSeqMaxLen-len(i),20))]) for i in pPSSMData], dtype=np.int32)
         
         if kmers>0:
             self.pSeqData_k = pSeqData_k
@@ -330,7 +330,7 @@ class DataClass:
                                 "res":True, \
                                 "aminoSeq":torch.tensor(self.pSeqTokenized[pTokenizedNames], dtype=torch.long).to(device), \
                                 "kaminoSeq":torch.tensor(self.pSeqTokenized_k[pTokenizedNames], dtype=torch.long).to(device), \
-                                "aminoPSSM":torch.tensor(self.pPSSMFeat[pTokenizedNames], dtype=torch.float32).to(device), \
+                                # "aminoPSSM":torch.tensor(self.pPSSMFeat[pTokenizedNames], dtype=torch.float32).to(device), \
                                 "aminoCtr":torch.tensor(self.pContFeat[pTokenizedNames], dtype=torch.float32).to(device), \
                                 "goSeq":torch.tensor(self.gSeqTokenized[pTokenizedNames], dtype=torch.long).to(device), \
                                 "pSeqLen":torch.tensor(self.pSeqLen[pTokenizedNames], dtype=torch.int32).to(device), \
@@ -354,7 +354,7 @@ class DataClass:
                             "res":True, \
                             "aminoSeq":torch.tensor(self.pSeqTokenized[pTokenizedNames], dtype=torch.long).to(device), \
                             "kaminoSeq":torch.tensor(self.pSeqTokenized_k[pTokenizedNames], dtype=torch.long).to(device), \
-                            "aminoPSSM":torch.tensor(self.pPSSMFeat[pTokenizedNames], dtype=torch.float32).to(device), \
+                            # "aminoPSSM":torch.tensor(self.pPSSMFeat[pTokenizedNames], dtype=torch.float32).to(device), \
                             "aminoCtr":torch.tensor(self.pContFeat[pTokenizedNames], dtype=torch.float32).to(device), \
                             "goSeq":torch.tensor(self.gSeqTokenized[pTokenizedNames], dtype=torch.long).to(device), \
                             "pSeqLen":torch.tensor(self.pSeqLen[pTokenizedNames], dtype=torch.int32).to(device), \
@@ -383,7 +383,7 @@ class DataClass:
                             "res":True, \
                             "aminoSeq":torch.tensor(self.pSeqTokenized[pTokenizedNames], dtype=torch.long).to(device), \
                             "kaminoSeq":torch.tensor(self.pSeqTokenized_k[pTokenizedNames], dtype=torch.long).to(device), \
-                            "aminoPSSM":torch.tensor(self.pPSSMFeat[pTokenizedNames], dtype=torch.float32).to(device), \
+                            # "aminoPSSM":torch.tensor(self.pPSSMFeat[pTokenizedNames], dtype=torch.float32).to(device), \
                             "aminoCtr":torch.tensor(self.pContFeat[pTokenizedNames], dtype=torch.float32).to(device), \
                             "goSeq":torch.tensor(self.gSeqTokenized[pTokenizedNames], dtype=torch.long).to(device), \
                             "pSeqLen":torch.tensor(self.pSeqLen[pTokenizedNames], dtype=torch.int32).to(device), \
@@ -407,7 +407,7 @@ class DataClass:
                         "res":True, \
                         "aminoSeq":torch.tensor(self.pSeqTokenized[pTokenizedNames], dtype=torch.long).to(device), \
                         "kaminoSeq":torch.tensor(self.pSeqTokenized_k[pTokenizedNames], dtype=torch.long).to(device), \
-                        "aminoPSSM":torch.tensor(self.pPSSMFeat[pTokenizedNames], dtype=torch.float32).to(device), \
+                        # "aminoPSSM":torch.tensor(self.pPSSMFeat[pTokenizedNames], dtype=torch.float32).to(device), \
                         "aminoCtr":torch.tensor(self.pContFeat[pTokenizedNames], dtype=torch.float32).to(device), \
                         "goSeq":torch.tensor(self.gSeqTokenized[pTokenizedNames], dtype=torch.long).to(device), \
                         "pSeqLen":torch.tensor(self.pSeqLen[pTokenizedNames], dtype=torch.int32).to(device), \
