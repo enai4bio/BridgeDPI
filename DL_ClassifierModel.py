@@ -397,7 +397,8 @@ class DTI_Bridge(BaseClassifier):
 
             cosNode = torch.matmul(node,node.transpose(1,2)) / (nodeDist*nodeDist.transpose(1,2)+1e-8) # => batchSize × nodeNum × nodeNum
             #cosNode = cosNode*0.5 + 0.5
-            cosNode = F.relu(cosNode) # => batchSize × nodeNum × nodeNum
+            #cosNode = F.relu(cosNode) # => batchSize × nodeNum × nodeNum
+            cosNode[cosNode<0] = 0
             cosNode[:,range(node.shape[1]),range(node.shape[1])] = 1 # => batchSize × nodeNum × nodeNum
             if self.maskDTI: cosNode[:,0,1] = cosNode[:,1,0] = 0
             D = torch.eye(node.shape[1], dtype=torch.float32, device=self.device).repeat(len(Xam),1,1) # => batchSize × nodeNum × nodeNum
