@@ -4,6 +4,9 @@ A Novel Graph Neural Network for Predicting Drug-Protein Interactions.
 ### Architecture   
 ![](framework.jpeg)
 
+## A demo webserver is available:
+http://csuligroup.com:8000/BridgeDPI
+
 # Usage
 ## How to use it?
 Firstly, you need to import the package.
